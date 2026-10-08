@@ -2,6 +2,21 @@
    GLOBAL
 ========================= */
 
+/* =========================
+CSS VARIABLES / THEME
+========================= */
+
+:root {
+--bg-color: #f8fafc;
+--text-color: #172033;
+--primary-color: #0369a1;
+--header-bg: #0f172a;
+--card-bg: #ffffff;
+--border-color: #cbd5e1;
+--hero-bg: #e0f2fe;
+--shadow: 0 5px 18px rgba(15, 23, 42, 0.06);
+}
+
 * {
     box-sizing: border-box;
 }
@@ -13,18 +28,11 @@ html {
 
 
 body {
-    margin: 0;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-    line-height: 1.6;
-
-    color: #172033;
-
-    background: #f8fafc;
+margin: 0;
+font-family: Arial, Helvetica, sans-serif;
+line-height: 1.6;
+color: var(--text-color);
+background: var(--bg-color);
 }
 
 
@@ -97,16 +105,11 @@ textarea:focus-visible {
 ========================= */
 
 .site-header {
-
-    background: #0f172a;
-
-    color: white;
-
-    position: sticky;
-
-    top: 0;
-
-    z-index: 10;
+background: var(--header-bg);
+color: white;
+position: sticky;
+top: 0;
+z-index: 10;
 }
 
 
@@ -203,10 +206,8 @@ nav a[aria-current="page"] {
 ========================= */
 
 .hero {
-
-    padding: 90px 0;
-
-    background: #e0f2fe;
+padding: 90px 0;
+background: var(--hero-bg);
 }
 
 
@@ -274,9 +275,9 @@ h1 {
 
     display: inline-block;
 
-    border: 2px solid #0369a1;
+    border: 2px solid var(--primary-color);
 
-    background: #0369a1;
+    background: var(--primary-color);
 
     color: white;
 
@@ -312,18 +313,19 @@ h1 {
 
 .hero-card,
 .card {
+background: var(--card-bg);
+color: var(--text-color);
+border: 1px solid var(--border-color);
+border-radius: 12px;
+padding: 24px;
+box-shadow: var(--shadow);
+transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
 
-    background: white;
-
-    border: 1px solid #cbd5e1;
-
-    border-radius: 12px;
-
-    padding: 24px;
-
-    box-shadow:
-        0 5px 18px
-        rgba(15, 23, 42, .06);
+.hero-card:hover,
+.card:hover {
+transform: translateY(-5px);
+box-shadow: 0 12px 25px rgba(15, 23, 42, 0.12);
 }
 
 
@@ -550,4 +552,76 @@ h1 {
         scroll-behavior: auto;
     }
 
+}
+
+/* =========================
+   DARK MODE
+========================= */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #0f172a;
+        --text-color: #e2e8f0;
+        --primary-color: #0284c7;
+        --header-bg: #020617;
+        --card-bg: #1e293b;
+        --border-color: #475569;
+        --hero-bg: #172554;
+        --shadow: 0 5px 18px rgba(0, 0, 0, 0.25);
+    }
+}
+
+/* =========================
+   ADVANCED RESPONSIVE DESIGN
+========================= */
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+
+    .hero {
+        padding: 50px 0;
+    }
+
+    .hero-card,
+    .card {
+        padding: 18px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .button {
+        padding: 9px 14px;
+        font-size: 14px;
+    }
+
+    .hero {
+        padding: 35px 0;
+    }
+
+    h1 {
+        font-size: 1.7rem;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
 }
